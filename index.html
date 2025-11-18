@@ -6,8 +6,8 @@
   <title>Bainetor</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
-      <link rel="stylesheet" href="style.css">
-      
+      <link rel="stylesheet" href="dapa.css">
+  
   <style>
     .key-verified {
       background: linear-gradient(135deg, #4caf50, #4caf50);
@@ -39,6 +39,7 @@
         <div class="status-dot"></div>
         <span>Status: <strong id="statusText">Masukkan Key</strong></span>
         <span>Model: <strong>GPT</strong></span>
+        <span id="timeRemaining" class="time-remaining" style="display: none;"></span>
       </div>
       <div class="status-item">
         <span>Memory: <strong>Active</strong></span>
@@ -52,7 +53,7 @@
           <div class="message-bubble">
             <div class="message-content">
               <p>Hallo bro welcome to Bainetor.</p>
-              <p style="margin-top: 10px; color: #ff6b6b; font-weight: 600;">⚠️ Masukkan Key Anda Terlebih Dahulu!</p>
+              <p style="margin-top: 10px; color: #ff6b6b; font-weight: 600;">⚠️ Jika Sudah Mengupload Foto, Harap Menunggu 3 Detik Agar Bisa Terkirim ⚠️</p>
             </div>
           </div>
         </div>
@@ -66,6 +67,11 @@
         </div>
       </div>
       
+      <div class="image-attachments" id="imageAttachments">
+        <div class="attachments-info" id="attachmentsInfo"></div>
+        <div class="attachments-container" id="attachmentsContainer"></div>
+      </div>
+      
       <div class="dev-button-area">
         <button class="dev-btn" id="devBtn">
           <span>Dev &lt;/&gt;</span>
@@ -73,6 +79,12 @@
       </div>
       
       <div class="input-area">
+        <input type="file" id="fileInput" class="file-input" accept="image/*" multiple style="display: none;">
+        <button class="upload-btn" id="uploadBtn">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M19 12v7H5v-7H3v7c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-7h-2zm-6 .67l2.59-2.58L17 11.5l-5 5-5-5 1.41-1.41L11 12.67V3h2z"/>
+          </svg>
+        </button>
         <div class="input-wrapper">
           <textarea class="chat-input" id="chatInput" placeholder="Masukkan key untuk memulai..." autocomplete="off" rows="1"></textarea>
         </div>
@@ -85,8 +97,35 @@
     </div>
   </div>
   
+  <div class="modal" id="uploadModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title">Upload Foto</h2>
+        <button class="close-btn" id="closeModal">&times;</button>
+      </div>
+      <div class="upload-area" id="uploadArea">
+        <div class="upload-icon">
+          <svg width="60" height="60" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M19 12v7H5v-7H3v7c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-7h-2zm-6 .67l2.59-2.58L17 11.5l-5 5-5-5 1.41-1.41L11 12.67V3h2z"/>
+          </svg>
+        </div>
+        <p class="upload-text">Klik untuk memilih foto atau tarik dan lepas di sini</p>
+        <p class="upload-hint">Format yang didukung: JPG, PNG, GIF, WEBP (Maks. 20MB)</p>
+        <input type="file" id="modalFileInput" class="file-input" accept="image/*" multiple>
+      </div>
+      <div class="preview-container" id="previewContainer">
+        <img id="previewImage" class="preview-image" src="" alt="Preview">
+        <p class="image-caption" id="imageCaption">Pratinjau gambar</p>
+      </div>
+      <div class="modal-actions">
+        <button class="modal-btn cancel" id="cancelUpload">Batal</button>
+        <button class="modal-btn upload" id="confirmUpload" disabled>Tambah Foto</button>
+      </div>
+    </div>
+  </div>
+  
   <div class="notification" id="notification">Text copied successfully!</div>
 
-    <script src="script.js"></script>
+    <script src="dapa.js"></script>
 </body>
 </html>
